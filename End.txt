@@ -388,50 +388,6 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 			<BinaryString name="Tags"></BinaryString>
 		</Properties>
 	</Item>
-	<Item class="Lighting" referent="RBX1652650DD6184D96A8DD78CA2BD6C1F5">
-		<Properties>
-			<Color3 name="Ambient">
-				<R>0</R>
-				<G>0</G>
-				<B>0</B>
-			</Color3>
-			<BinaryString name="AttributesSerialize"></BinaryString>
-			<float name="Brightness">2</float>
-			<Color3 name="ColorShift_Bottom">
-				<R>0</R>
-				<G>0</G>
-				<B>0</B>
-			</Color3>
-			<Color3 name="ColorShift_Top">
-				<R>0</R>
-				<G>0</G>
-				<B>0</B>
-			</Color3>
-			<float name="EnvironmentDiffuseScale">0</float>
-			<float name="EnvironmentSpecularScale">0</float>
-			<float name="ExposureCompensation">0</float>
-			<Color3 name="FogColor">
-				<R>0.752941251</R>
-				<G>0.752941251</G>
-				<B>0.752941251</B>
-			</Color3>
-			<float name="FogEnd">100000</float>
-			<float name="FogStart">0</float>
-			<float name="GeographicLatitude">41.7332993</float>
-			<bool name="GlobalShadows">true</bool>
-			<string name="Name">Lighting</string>
-			<Color3 name="OutdoorAmbient">
-				<R>0.501960814</R>
-				<G>0.501960814</G>
-				<B>0.501960814</B>
-			</Color3>
-			<bool name="Outlines">false</bool>
-			<float name="ShadowSoftness">0.5</float>
-			<BinaryString name="Tags"></BinaryString>
-			<token name="Technology">1</token>
-			<string name="TimeOfDay">14:00:00</string>
-		</Properties>
-	</Item>
 	<Item class="HttpService" referent="RBXA247BEF3DD974F4F97CC0F0D0845A24E">
 		<Properties>
 			<BinaryString name="AttributesSerialize"></BinaryString>
