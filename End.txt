@@ -1,50 +1,4 @@
-</Properties>
-</Item> 
-<Item class="Lighting" referent="RBX06347D77166E4B01B8AF00DD8781C6F6">
-		<Properties>
-			<Color3 name="Ambient">
-				<R>0.541176498</R>
-				<G>0.541176498</G>
-				<B>0.541176498</B>
-			</Color3>
-			<BinaryString name="AttributesSerialize">AQAAABIAAABVc2VDdXJyZW50TGlnaHRpbmcDAA==</BinaryString>
-			<float name="Brightness">2</float>
-			<Color3 name="ColorShift_Bottom">
-				<R>0</R>
-				<G>0</G>
-				<B>0</B>
-			</Color3>
-			<Color3 name="ColorShift_Top">
-				<R>0</R>
-				<G>0</G>
-				<B>0</B>
-			</Color3>
-			<float name="EnvironmentDiffuseScale">0</float>
-			<float name="EnvironmentSpecularScale">0</float>
-			<float name="ExposureCompensation">0</float>
-			<Color3 name="FogColor">
-				<R>0.752941251</R>
-				<G>0.752941251</G>
-				<B>0.752941251</B>
-			</Color3>
-			<float name="FogEnd">100000</float>
-			<float name="FogStart">0</float>
-			<float name="GeographicLatitude">41.7332993</float>
-			<bool name="GlobalShadows">true</bool>
-			<string name="Name">Lighting</string>
-			<Color3 name="OutdoorAmbient">
-				<R>0.501960814</R>
-				<G>0.501960814</G>
-				<B>0.501960814</B>
-			</Color3>
-			<bool name="Outlines">false</bool>
-			<float name="ShadowSoftness">0.200000003</float>
-			<int64 name="SourceAssetId">-1</int64>
-			<BinaryString name="Tags"></BinaryString>
-			<token name="Technology">3</token>
-			<string name="TimeOfDay">14:00:00</string>
-		</Properties>
-	</Item>
+
 <Item class="Terrain" referent="RBX0B23B61CDD2B4CC3809A2791151E557F">
 			<Properties>
 				<bool name="Anchored">true</bool>
@@ -133,6 +87,52 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				</Vector3>
 			</Properties>
 		</Item>
+	</Item>
+
+<Item class="Lighting" referent="RBX06347D77166E4B01B8AF00DD8781C6F6">
+		<Properties>
+			<Color3 name="Ambient">
+				<R>0.541176498</R>
+				<G>0.541176498</G>
+				<B>0.541176498</B>
+			</Color3>
+			<BinaryString name="AttributesSerialize">AQAAABIAAABVc2VDdXJyZW50TGlnaHRpbmcDAA==</BinaryString>
+			<float name="Brightness">2</float>
+			<Color3 name="ColorShift_Bottom">
+				<R>0</R>
+				<G>0</G>
+				<B>0</B>
+			</Color3>
+			<Color3 name="ColorShift_Top">
+				<R>0</R>
+				<G>0</G>
+				<B>0</B>
+			</Color3>
+			<float name="EnvironmentDiffuseScale">0</float>
+			<float name="EnvironmentSpecularScale">0</float>
+			<float name="ExposureCompensation">0</float>
+			<Color3 name="FogColor">
+				<R>0.752941251</R>
+				<G>0.752941251</G>
+				<B>0.752941251</B>
+			</Color3>
+			<float name="FogEnd">100000</float>
+			<float name="FogStart">0</float>
+			<float name="GeographicLatitude">41.7332993</float>
+			<bool name="GlobalShadows">true</bool>
+			<string name="Name">Lighting</string>
+			<Color3 name="OutdoorAmbient">
+				<R>0.501960814</R>
+				<G>0.501960814</G>
+				<B>0.501960814</B>
+			</Color3>
+			<bool name="Outlines">false</bool>
+			<float name="ShadowSoftness">0.200000003</float>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+			<token name="Technology">3</token>
+			<string name="TimeOfDay">14:00:00</string>
+		</Properties>
 	</Item>
 	<Item class="SoundService" referent="RBXFE7CC53946DA43FDB8043F4440D2F780">
 		<Properties>
