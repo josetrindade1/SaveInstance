@@ -16,9 +16,20 @@ local config = {
     RMS = false,
     InfFuel = false,
     God = false,
-    AllOn = false
+    AllOn = false,
+    AimDelay = 0,
+    AimFieldOfView = 0,
+    AimMouseSensitivity = 0,
+    CrosshairSize = 0,
+    ShootDelay = 0,
+    AD = false,
+    AFV = false,
+    AMS = false,
+    CS = false,
+    R = false,
+    SD = false
 }
-local Window  = Library.CreateLib("Emergency Hamburg V1.2", "Synapse")
+local Window  = Library.CreateLib("Emergency Hamburg V1.3", "Synapse")
 local Tab = Window:NewTab("Car Configuration")
 local Section = Tab:NewSection("Server Configuration")
 Section:NewSlider("Max Speed", "The Maximum Speed Your Car Have", 10000, 0, function(s)
@@ -49,7 +60,7 @@ Section:NewSlider("Brake Force", "The Maximun Brake Force Your Car Have", 10000,
     config.MaxBrakeForce = s
 end)
 Section:NewToggle("Toggle Brake Force", "Toggle The Brake Force Of Your Car", function(state)
-    cofig.MBF = state
+    config.MBF = state
 end)
 Section:NewSlider("Max Suspension Size", "The Maximun Size That Your Suspension Can Go", 50, 0, function(s)
     config.MaxSuspensionSize = s
@@ -115,19 +126,93 @@ Section2:NewColorPicker("Color Of Your Car Wheel Outside (Client Only!)", "Chang
         end
     end
 end)
+
+local Tab = Window:NewTab("Gun Configuration")
+local Section = Tab:NewSection("Server Configuration")
+Section:NewSlider("Aim Delay", "Change The Delay That It Take To Aim ", 20, 0, function(s)
+    config.AimDelay = s
+end)
+Section:NewToggle("Toggle Aim Delay", "Toggle Aim Delay", function(state)
+    config.AD = state
+end)
+Section:NewSlider("Aim Field Of View", "Change The Field Of View When Aiming", 200, 0, function(s)
+    config.AimFieldOfView = s
+end)
+Section:NewToggle("Toggle Aim Field Of View", "Toggle Aim Field Of View", function(state)
+    config.AFV = state
+end)
+Section:NewSlider("Aim Mouse Sensitivity", "Change The Sensitivity when aiming", 20, 0, function(s)
+    config.AimMouseSensitivity = s
+end)
+Section:NewToggle("Toggle Aim Mouse Sensitivity", "Toggle Aim Mouse Sensitivity", function(state)
+    config.AMS = state
+end)
+Section:NewSlider("Crosshair Size", "Change The Size Of The Crosshair", 100, 0, function(s)
+    config.CrosshairSize = s
+end)
+Section:NewToggle("Toggle Crosshair Size", "Toggle Crosshair Size", function(state)
+    config.CS = state
+end)
+Section:NewToggle("No Recoil", "Toggle No Recoil", function(state)
+    config.R = state
+end)
+Section:NewToggle("No Shoot Delay", "Toggle No Shoot Delay", function(state)
+    config.SD = state
+end)
+
 local Tab = Window:NewTab("Robberies")
 local Section = Tab:NewSection("Is it posible to steal?")
-local bank = Section:NewLabel("Bank: true")
-local jeweler = Section:NewLabel("Jeweler: true")
-local Containergreen = Section:NewLabel("Green Container: true")
-local Containeryellow = Section:NewLabel("Yellow Container: true")
+local bank = Section:NewLabel("Bank: false")
+local jeweler = Section:NewLabel("Jeweler: false")
+local Containergreen = Section:NewLabel("Green Container: false")
+local Containeryellow = Section:NewLabel("Yellow Container: false")
 
 local Tab = Window:NewTab("Others")
 local Section = Tab:NewSection("Others")
 Section:NewKeybind("Toggle UI", "Toggle UI", Enum.KeyCode.Delete, function()
 	Library:ToggleUI()
 end)
+local Player = game:GetService("Players").LocalPlayer
 game:GetService('RunService').Heartbeat:connect(function()
+    repeat wait() until Player.Character
+    local c = Player.Character
+    local MP5 = c:FindFirstChild("MP5")
+    local M4 = c:FindFirstChild("M4 Carbine") 
+    local Glock = c:FindFirstChild("Glock 17")
+    local G36 = c:FindFirstChild("G36")
+    local Sniper = c:FindFirstChild("Sniper")
+    if MP5 or M4 or Glock or G36 or Sniper then
+        local gun = nil
+        if MP5 then
+            gun = MP5
+        elseif M4 then
+            gun = M4
+        elseif Glock then
+            gun = Glock
+        elseif G36 then
+            gun = G36
+        elseif Sniper then
+            gun = Sniper
+        end
+        if config.AD then
+            gun:SetAttribute("AimDelay", config.AimDelay)
+        end
+        if config.AFV then
+            gun:SetAttribute("AimFieldOfView", config.AimFieldOfView)
+        end
+        if config.AMS then
+            gun:SetAttribute("AimMouseSensitivity", tonumber(config.AimMouseSensitivity) / 10)
+        end
+        if config.CS then
+            gun:SetAttribute("CrosshairSize", config.CrosshairSize)
+        end
+        if config.R then
+            gun:SetAttribute("Recoil", 0)
+        end
+        if config.SD then
+            gun:SetAttribute("ShootDelay", 0)
+        end
+    end
     local roubberies = workspace.Robberies
     local bankR = roubberies:FindFirstChild("BankRobbery")
     local jewelerR = roubberies:FindFirstChild("JewelerRobbery")
@@ -149,21 +234,31 @@ game:GetService('RunService').Heartbeat:connect(function()
             local barri1 = green:FindFirstChild("Barricade")
             local barri2 = yellow:FindFirstChild("Barricade")
             if barri1 ~= nil and barri2 ~= nil then
-                local value1 = false
-                local value2 = false
-                if barri1.WoodPlanks.Transparency == 1 then
-                    value1 = true
+                local WoodPlanks1 = barri1:FindFirstChild("WoodPlanks")
+                local WoodPlanks2 = barri2:FindFirstChild("WoodPlanks")
+                if WoodPlanks1 ~= nil and WoodPlanks2 ~= nil then
+                    local value1 = false
+                    local value2 = false
+                    if WoodPlanks1.Transparency == 1 then
+                        value1 = true
+                    end
+                    if WoodPlanks2.Transparency == 1 then
+                        value2 = true
+                    end
+                    Containergreen:UpdateLabel("Green Container: "..tostring(value1))
+                    Containeryellow:UpdateLabel("Yellow Container: "..tostring(value2))
+                else
+                    Containergreen:UpdateLabel("Green Container: Not Posible To Detect")
+                    Containeryellow:UpdateLabel("Yellow Container: Not Posible To Detect")
                 end
-                if barri2.WoodPlanks.Transparency == 1 then
-                    value2 = true
-                end
-                Containergreen:UpdateLabel("Green Container: "..tostring(value1))
-                Containeryellow:UpdateLabel("Yellow Container: "..tostring(value2))
+            else
+                Containergreen:UpdateLabel("Green Container: Not Posible To Detect")
+                Containeryellow:UpdateLabel("Yellow Container: Not Posible To Detect")
             end
         end
     end
     spawn(function()
-        task.wait(1)
+        task.wait(0.5)
         if jewelerR ~= nil then
             local value = false
             for i , v in pairs(jewelerR.Robbables:GetDescendants()) do
@@ -236,15 +331,6 @@ game:GetService('RunService').Heartbeat:connect(function()
                         sus.MinLength = 0
                         car.Body.Body.CanCollide = true
                     end
-                end
-            end
-        end
-        for i = 1 , 4 do 
-            local wheels = car.Wheels
-            local wheel = wheels:FindFirstChild(Wheel[i])
-            if wheel ~= nil then
-                for i,v in pairs(wheel.Parts:GetChildren()) do
-                    v.DoubleSided = true
                 end
             end
         end
