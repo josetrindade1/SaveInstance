@@ -263,15 +263,22 @@ game:GetService('RunService').Heartbeat:connect(function()
     spawn(function()
         task.wait(0.5)
         if jewelerR ~= nil then
-            local value = false
-            for i , v in pairs(jewelerR.Robbables:GetDescendants()) do
-                if v.Name == "Jewelry" and v.Transparency == 0 then
-                    value = true
-                    break;
+            local robbables = jewelerR:FindFirstChild("Robbables")
+            if robbables ~= nil then
+                local value = false
+                for i , v in pairs(jewelerR.Robbables:GetDescendants()) do
+                    if v.Name == "Jewelry" and v.Transparency == 0 then
+                        value = true
+                        break;
+                    end
+                    task.wait(0.001)
                 end
-                task.wait(0.001)
+                jeweler:UpdateLabel("jeweler: "..tostring(value))
+            else
+                jeweler:UpdateLabel("jeweler: Not Posible To Detect")
             end
-            jeweler:UpdateLabel("jeweler: "..tostring(value))
+        else
+            jeweler:UpdateLabel("jeweler: Not Posible To Detect")
         end
     end)
     if bankR ~= nil then
@@ -279,7 +286,11 @@ game:GetService('RunService').Heartbeat:connect(function()
         if light ~= nil then
             local value = light.Light.Enabled
             bank:UpdateLabel("Bank: "..tostring(value))
+        else
+            bank:UpdateLabel("Bank: Not Posible To Detect")
         end
+    else
+        bank:UpdateLabel("Bank: Not Posible To Detect")
     end
     local vehicles = game.Workspace.Vehicles
     local car = vehicles:FindFirstChild(game.Players.LocalPlayer.Name)
