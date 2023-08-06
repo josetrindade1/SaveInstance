@@ -255,6 +255,9 @@ game:GetService('RunService').Heartbeat:connect(function()
                 Containergreen:UpdateLabel("Green Container: Not Posible To Detect")
                 Containeryellow:UpdateLabel("Yellow Container: Not Posible To Detect")
             end
+        else
+            Containergreen:UpdateLabel("Green Container: Not Posible To Detect")
+            Containeryellow:UpdateLabel("Yellow Container: Not Posible To Detect")
         end
     end
     spawn(function()
